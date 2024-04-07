@@ -85,6 +85,7 @@ year_lst <- c(1990:2022)
 # year_lst <- c(2007:2020)
 
 # Country list (Entire country)
+<<<<<<< HEAD
 # country_lst <- c("AFG", "ALB", "DZA", "AND", "AGO", "ATG", "ARG", "ARM", "ABW", "AUS", "AUT", "AZE", "BHS", "BHR", "BGD", "BRB", "BLR", "BEL", "BLZ", "BEN", "BMU",
 # "BTN", "BOL", "BIH", "BWA", "BRA", "VGB", "BRN", "BGR", "BFA", "BDI", "KHM", "CMR", "CAN", "CPV", "CYM", "CAF", "TCD", "CHL", "CHN", "COL", "COG", "CRI", "HRV",
 # "CUB", "CYP", "CZE", "CIV", "PRK", "COD", "DNK", "DJI", "DOM", "ECU", "EGY", "SLV", "ERI", "EST", "ETH", "FJI", "FIN", "FRA", "PYF", "GAB", "GMB", "GEO", "DEU",
@@ -103,6 +104,22 @@ country_lst <- c("DZA", "AGO", "ARG", "AUS", "AUT", "AZE", "BHR", "BGD", "BLR", 
 # Industry list (goods and services)
 goods_lst <- paste0("c", 1:12)
 services_lst <- paste0("c", 13:25)
+=======
+country_lst <- c("AFG", "ALB", "DZA", "AND", "AGO", "ATG", "ARG", "ARM", "ABW", "AUS", "AUT", "AZE", "BHS", "BHR", "BGD", "BRB", "BLR", "BEL", "BLZ", "BEN", "BMU",
+"BTN", "BOL", "BIH", "BWA", "BRA", "VGB", "BRN", "BGR", "BFA", "BDI", "KHM", "CMR", "CAN", "CPV", "CYM", "CAF", "TCD", "CHL", "CHN", "COL", "COG", "CRI", "HRV",
+"CUB", "CYP", "CZE", "CIV", "PRK", "COD", "DNK", "DJI", "DOM", "ECU", "EGY", "SLV", "ERI", "EST", "ETH", "FJI", "FIN", "FRA", "PYF", "GAB", "GMB", "GEO", "DEU",
+"GHA", "GRC", "GRL", "GTM", "GIN", "GUY", "HTI", "HND", "HKG", "HUN", "ISL", "IND", "IDN", "IRN", "IRQ", "IRL", "ISR", "ITA", "JAM", "JPN", "JOR", "KAZ", "KEN",
+"KWT", "KGZ", "LAO", "LVA", "LBN", "LSO", "LBR", "LBY", "LIE", "LTU", "LUX", "MAC", "MDG", "MWI", "MYS", "MDV", "MLI", "MLT", "MRT", "MUS", "MEX", "MCO", "MNG",
+"MNE", "MAR", "MOZ", "MMR", "NAM", "NPL", "NLD", "ANT", "NCL", "NZL", "NIC", "NER", "NGA", "NOR", "PSE", "OMN", "PAK", "PAN", "PNG", "PRY", "PER", "PHL", "POL",
+"PRT", "QAT", "KOR", "MDA", "ROU", "RUS", "RWA", "WSM", "SMR", "STP", "SAU", "SEN", "SRB", "SYC", "SLE", "SGP", "SVK", "SVN", "SOM", "ZAF", "SDS", "ESP", "LKA",
+"SUD", "SUR", "SWZ", "SWE", "CHE", "SYR", "TWN", "TJK", "THA", "MKD", "TGO", "TTO", "TUN", "TUR", "TKM", "USR", "UGA", "UKR", "ARE", "GBR", "TZA", "USA", "URY",
+"UZB", "VUT", "VEN", "VNM", "YEM", "ZMB", "ZWE")
+# country_lst <- c("AFG", "ALB", "DZA", "AND", "AGO")
+
+# Industry list (goods and services)
+goods_lst <- paste0("c", 1:12)
+services_lst <- paste0("c", 13:24)
+>>>>>>> master
 industry_lst <- list("goods" = goods_lst, "services" = services_lst)
 
 # copy
@@ -308,7 +325,11 @@ write_csv(BT_I3, "Eora_BT_d/Eora_BT_IND_sample.csv")
 
 #----------------[[Running time of functions]]----------------#
 
+<<<<<<< HEAD
 # 0.75(sec) * 2,370,060(rows) -> about 21 days (After multi-processing about 4-5days)
+=======
+# 0.75(sec) * 2,370,060(rows) -> about 21 days
+>>>>>>> master
 
 ## ~0.63sec
 time_vec <- c()
@@ -323,6 +344,7 @@ print(Sys.time()-time)
 
 
 
+<<<<<<< HEAD
 # #------------------Export of specific industry------------------#
 # 
 # 
@@ -335,4 +357,7 @@ print(Sys.time()-time)
 # 
 # CO2_export = CO2_rate * Export1
 # GHG_export = GHG_rate * Export1
+=======
+
+>>>>>>> master
 
