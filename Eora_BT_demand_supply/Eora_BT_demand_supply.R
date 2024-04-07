@@ -105,6 +105,9 @@ cal_beta <- function(df, country_s, country_r, industry_i, industry_j) {
   return (beta)
 }
 
+
+#----TODO: Convert function "cal_BT_demand_supply" to new version that added industry factor----#
+
 #---------------------------------
 # Create BT_demand and BT_supply between country_s and country_r
 #
@@ -264,6 +267,8 @@ parLapply(cl, tasks, function(f) f())
 stopCluster(cl)
 print(Sys.time()-time)
 
+
+
 # # Seperate data from 2007~2013 and 2014~2020
 # t1 <- BT_EachYear %>% filter(Year >= 1990 & Year <= 1999)
 # t2 <- BT_EachYear %>% filter(Year >= 2000 & Year <= 2009)
@@ -296,7 +301,7 @@ print(Sys.time()-time)
 # BT_demand_supply_t2 <- BT_demand_supply_t2 %>% mutate(t = 2)
 # BT_demand_supply_t3 <- BT_demand_supply_t3 %>% mutate(t = 3)
 # 
-# # Bind rows and send a feature "t" to the front
+# # Bind rows and send a feature "t" to he front
 # BT_demand_supply <- bind_rows(BT_demand_supply_t1, BT_demand_supply_t2)
 # BT_demand_supply1 <- bind_rows(BT_demand_supply, BT_demand_supply_t3)
 # BT_demand_supply2 <- BT_demand_supply1 %>% select(t, everything())
