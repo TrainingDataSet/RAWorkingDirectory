@@ -322,7 +322,6 @@ cal_VAD(df, country_s, industry_i, country_r, industry_j)
 print(Sys.time()-time)
 
 
-
 # #------------------Export of specific industry------------------#
 # 
 # 
