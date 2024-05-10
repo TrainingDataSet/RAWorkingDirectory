@@ -1,4 +1,4 @@
-## 국가 i,j 섹터 s, u
+# [Last Modified: 2024-05-05]
 
 ### VAD of country_s, industry_i and country_r, industry_j ###
 
