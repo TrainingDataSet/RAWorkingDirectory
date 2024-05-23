@@ -80,7 +80,7 @@ cal_BT <- function(t_df, vad_df, year, country_i, country_j, sector_s, sector_u)
 # print(cal_BT(t_df, vad_df, year, country_i, country_j, sector_s, sector_u))
 # 
 # # Running Time of Function
-# time_vec <- vector("numeric", 10)
+# time_vec <- vector("numeric", 100)
 # index <- 1
 # for (i in 1:100) {
 #   time <- Sys.time()

@@ -107,7 +107,7 @@ cal_total_trade_flows <- function(exports_df, pollutants_df, year, country_i, co
 # print(cal_total_trade_flows(exports_df, pollutants_df, year, country_i, country_j, sector_s, sector_u))
 # 
 # # Running Time of Function
-# time_vec <- vector("numeric", 10)
+# time_vec <- vector("numeric", 100)
 # index <- 1
 # for (i in 1:100) {
 #   time <- Sys.time()

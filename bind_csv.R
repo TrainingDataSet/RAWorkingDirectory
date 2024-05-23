@@ -18,7 +18,7 @@ bind_csv <- function(directory, file_name) {
 }
 
 # Run
-directory = "BT_pollutants"
-file_name = "BT_pollutants/BT_pollutants.csv"
+directory = "MB_pollutants"
+file_name = "MB_pollutants/MB_pollutants.csv"
 bind_csv(directory, file_name)
 

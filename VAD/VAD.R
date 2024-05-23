@@ -7,14 +7,11 @@
 #
 # Args:
 #   df: Preprocessed MRIO Data frame
-#   country_s: Code of country_s
-#   industry_i: Code of industry_i
-#   country_r: Code of country_r
-#   industry_j: Code of industry_j
+#   country: Code of country
+#   sector: Sector (goods/services)
 #
 # Returns:
-#   VAD_s_i: Value added of industry_i in country_s
-#   VAD_r_j: Value added of industry_j in country_r
+#   VAD: VAD of the country
 #---------------------------------
 
 cal_VAD <- function(df, country, sector) {
