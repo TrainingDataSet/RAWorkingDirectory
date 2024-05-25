@@ -1,4 +1,12 @@
 # [Last Modified: 2024-05-09]
+# 2023-09-22: Add natural log by calculating time window variable, Remove hp filter
+# 2023-09-25: read.csv -> read_csv (improve speed)
+# 2023-10-11: write_csv(BT_d_df, "BT_d/TradeFlows.csv") Save trade flows for each year as a csv file
+# 2023-12-26: Code optimization [running time improvement 2101.48sec -> 1648.17sec per year (21.57%)] 
+# 2024-01-09: Add industry operation with goods and services
+# 2024-02-29: Read Eora file instead of MRIO file and add intermediate save
+# 2024-03-13: Replicate table which interchanged country & Industry pair and remove duplicated rows
+# 2024-05-09: Add pollutants factor to calculate variable
 
 library(dplyr)
 library(readr)
@@ -68,16 +76,16 @@ cal_BT <- function(t_df, vad_df, year, country_i, country_j, sector_s, sector_u)
 
 #---------------- Test Code ----------------#
 
-# t_df <- read_csv("T_pollutants/T_pollutants.csv")
-# vad_df <- read_csv("VAD/Eora_VAD.csv")
-# 
-# year <- 2021
-# country_i <- "ARG"
-# country_j <- "AGO"
-# sector_s <- "goods"
-# sector_u <- "services"
-# 
-# print(cal_BT(t_df, vad_df, year, country_i, country_j, sector_s, sector_u))
+t_df <- read_csv("T_pollutants/T_pollutants.csv")
+vad_df <- read_csv("VAD/Eora_VAD.csv")
+
+year <- 2018
+country_i <- "BGR"
+country_j <- "CZE"
+sector_s <- "goods"
+sector_u <- "services"
+
+print(cal_BT(t_df, vad_df, year, country_i, country_j, sector_s, sector_u))
 # 
 # # Running Time of Function
 # time_vec <- vector("numeric", 100)

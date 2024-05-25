@@ -8,11 +8,9 @@
 
 library(readr)
 library(dplyr)
+library(parallel)
 
 setwd("~/RAWorkingDirectory")
-
-df <- read_csv("T_pollutants/T_pollutants.csv")
-
 
 #---------------------------------
 # Calculate MB_pollutants
@@ -108,25 +106,25 @@ cal_MB <- function(df, year, country_i, country_j, sector_s, sector_u) {
 
 #---------------- Test Code ----------------#
 
-df <- read_csv("T_pollutants/T_pollutants.csv")
-year <- 1990
-country_i <- "AGO"
-country_j <- "DZA"
-sector_s <- "services"
-sector_u <- "goods"
-
-print(cal_MB(df, year, country_i, country_j, sector_s, sector_u))
-
-# Running Time of Function
-time_vec <- vector("numeric", 100)
-index <- 1
-for (i in 1:100) {
-  time <- Sys.time()
-  test <- cal_MB(df, year, country_i, country_j, sector_s, sector_u)
-  time_vec[index] <- Sys.time() - time
-  index <- index + 1
-}
-print(mean(time_vec))  # --> 0.2 sec
+# df <- read_csv("T_pollutants/T_pollutants.csv")
+# year <- 1990
+# country_i <- "AGO"
+# country_j <- "DZA"
+# sector_s <- "services"
+# sector_u <- "goods"
+# 
+# print(cal_MB(df, year, country_i, country_j, sector_s, sector_u))
+# 
+# # Running Time of Function
+# time_vec <- vector("numeric", 100)
+# index <- 1
+# for (i in 1:100) {
+#   time <- Sys.time()
+#   test <- cal_MB(df, year, country_i, country_j, sector_s, sector_u)
+#   time_vec[index] <- Sys.time() - time
+#   index <- index + 1
+# }
+# print(mean(time_vec))  # --> 0.2 sec
   
   
 
@@ -250,5 +248,5 @@ tasks <- list(
 time <- Sys.time()
 parLapply(cl, tasks, function(f) f())
 stopCluster(cl)
-print(Sys.time()-time)  # --> running time 1:48:44 
+print(Sys.time()-time)  
   
