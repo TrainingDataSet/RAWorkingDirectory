@@ -39,11 +39,12 @@ services_lst <- paste0("c", 13:25)
 # Args:
 #   df_Q: Preprocessed pollutants dataframe
 #   country: Code of country
-#   industry: Code of industry
 #
 # Returns:
-#   CO2_rate: CO2 / Sum of CO2 in Goods or Services
-#   GHG_rate: GHG / Sum of GHG in Goods or Services
+#   CO2_goods_rate: CO2 / Sum of CO2 in Goods
+#   CO2_services_rate: CO2 / Sum of CO2 in Services
+#   GHG_goods_rate: GHG / Sum of GHG in Goods
+#   GHG_services_rate: GHG / Sum of GHG in Services
 #---------------------------------
 
 cal_weight <- function(df_Q, country) {
