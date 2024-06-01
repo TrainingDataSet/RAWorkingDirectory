@@ -65,9 +65,9 @@ cal_window <- function(df, variables, file_name) {
 }
 
 # Run
-df <- read_csv("BT_pollutants/BT_pollutants.csv")
-variables <- c("BT_CO2", "BT_GHG")
-file_name <- "Time_window/BT_pollutants_tw.csv"
+df <- read_csv("LB_pollutants/LB_pollutants.csv")
+variables <- c("LB_CO2", "LB_GHG")
+file_name <- "Time_window/LB_pollutants_tw.csv"
 
 cal_window(df, variables, file_name)
 
