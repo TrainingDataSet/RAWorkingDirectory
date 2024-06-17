@@ -7,7 +7,7 @@ setwd("~/RAWorkingDirectory")
 
 
 #---------------------------------
-# Calculate pollutants weight of specific country and industry
+# Calculate correlation of pollutants
 #
 # Args:
 #   df: Sum pollutants dataframe
@@ -102,6 +102,11 @@ country_lst2 <- country_lst
 sector_lst <- c("goods", "services")
 sector_lst2 <- sector_lst
 
+# Time window list
+tw_lst <- list('1' = c(1990:1999),
+               '2' = c(2000:2009),
+               '3' = c(2010:2019),
+               '4' = c(2010:2022))
   
 # Create List
 lst_length <- numeric(length(tw_lst) * sum(1:length(country_lst)-1) * length(sector_lst) * length(sector_lst2))
