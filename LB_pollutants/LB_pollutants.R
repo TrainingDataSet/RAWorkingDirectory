@@ -1,5 +1,6 @@
 # [Last Modified: 2024-05-25]
 # 2024-05-09: Add pollutants factor to calculate variable
+# 2024-06-17: Exclude trading partner from third country k
 
 library(readr)
 library(dplyr)
@@ -27,15 +28,6 @@ cal_LB <- function(df, year, country_i, country_j, sector_s, sector_u) {
   
   #----------------- Left-Hand Side of LB_network_1st  -----------------#
   
-  T_i_CO2 <- df[(df$Year == year) & 
-                (df$Country_i == country_i) & 
-                (df$Sector_s == sector_s), "T_CO2"]
-  
-  T_i_GHG <- df[(df$Year == year) & 
-                (df$Country_i == country_i) & 
-                (df$Sector_s == sector_s), "T_GHG"]
-  
-  
   except_j_CO2 <- df[(df$Year == year) & 
                      (df$Country_i == country_i) & 
                      (df$Sector_s == sector_s) & 
@@ -51,21 +43,12 @@ cal_LB <- function(df, year, country_i, country_j, sector_s, sector_u) {
   sum_exj_GHG <- sum(as.data.frame(lapply(except_j_GHG, as.numeric)))
   
   
-  lhs_CO2 <- as.vector(T_i_CO2 / sum_exj_CO2)[[1]]
+  lhs_CO2 <- as.vector(except_j_CO2 / sum_exj_CO2)[[1]]
   
-  lhs_GHG <- as.vector(T_i_GHG / sum_exj_GHG)[[1]]
+  lhs_GHG <- as.vector(except_j_GHG / sum_exj_GHG)[[1]]
   
   
   #----------------- Right-Hand Side of LB_network_1st  -----------------#
-  
-  T_j_CO2 <- df[(df$Year == year) & 
-                (df$Country_i == country_j) & 
-                (df$Sector_s == sector_u), "T_CO2"]
-  
-  T_j_GHG <- df[(df$Year == year) & 
-                (df$Country_i == country_j) & 
-                (df$Sector_s == sector_u), "T_GHG"]
-  
   
   except_i_CO2 <- df[(df$Year == year) & 
                      (df$Country_i == country_j) & 
@@ -82,9 +65,9 @@ cal_LB <- function(df, year, country_i, country_j, sector_s, sector_u) {
   sum_exi_GHG <- sum(as.data.frame(lapply(except_i_GHG, as.numeric)))
   
   
-  rhs_CO2 <- as.vector(T_j_CO2 / sum_exi_CO2)[[1]]
+  rhs_CO2 <- as.vector(except_i_CO2 / sum_exi_CO2)[[1]]
   
-  rhs_GHG <- as.vector(T_j_GHG / sum_exi_GHG)[[1]]
+  rhs_GHG <- as.vector(except_i_GHG / sum_exi_GHG)[[1]]
   
   
   #----------------- Final Result of LB_network_1st  -----------------#
@@ -101,25 +84,25 @@ cal_LB <- function(df, year, country_i, country_j, sector_s, sector_u) {
 
 #---------------- Test Code ----------------#
 
-# df <- read_csv("T_pollutants/T_pollutants.csv")
-# year <- 2020
-# country_i <- "JPN"
-# country_j <- "KOR"
-# sector_s <- "goods"
-# sector_u <- "services"
-# 
-# print(cal_LB(df, year, country_i, country_j, sector_s, sector_u))
-# 
-# # Running Time of Function
-# time_vec <- vector("numeric", 100)
-# index <- 1
-# for (i in 1:100) {
-#   time <- Sys.time()
-#   test <- cal_LB(df, year, country_i, country_j, sector_s, sector_u)
-#   time_vec[index] <- Sys.time() - time
-#   index <- index + 1
-# }
-# print(mean(time_vec))  # --> 0.18 sec
+df <- read_csv("T_pollutants/T_pollutants.csv")
+year <- 2020
+country_i <- "JPN"
+country_j <- "KOR"
+sector_s <- "goods"
+sector_u <- "services"
+
+print(cal_LB(df, year, country_i, country_j, sector_s, sector_u))
+
+# Running Time of Function
+time_vec <- vector("numeric", 100)
+index <- 1
+for (i in 1:100) {
+  time <- Sys.time()
+  test <- cal_LB(df, year, country_i, country_j, sector_s, sector_u)
+  time_vec[index] <- Sys.time() - time
+  index <- index + 1
+}
+print(mean(time_vec))  # --> 0.14 sec
 
 
 

@@ -5,6 +5,7 @@
 # 2024-03-13: Read Eora file instead of MRIO file and Add industry factor
 # 2024-03-15: Add intermediate save & Replicate table which interchanged country & Industry pair and remove duplicated rows
 # 2024-05-23: Add pollutants factor to calculate variable
+# 2024-06-17: Exclude trading partner from third country k
 
 library(readr)
 library(dplyr)
@@ -31,15 +32,6 @@ setwd("~/RAWorkingDirectory")
 cal_MB <- function(df, year, country_i, country_j, sector_s, sector_u) {
   
   #----------------- Left-Hand Side of MB_network_1st  -----------------#
-
-  T_i_CO2 <- df[(df$Year == year) & 
-                (df$Country_i == country_i) & 
-                (df$Sector_s == sector_s), "T_CO2"]
-  
-  T_i_GHG <- df[(df$Year == year) & 
-                (df$Country_i == country_i) & 
-                (df$Sector_s == sector_s), "T_GHG"]
-  
   
   except_j_CO2 <- df[(df$Year == year) & 
                      (df$Country_i == country_i) & 
@@ -56,21 +48,12 @@ cal_MB <- function(df, year, country_i, country_j, sector_s, sector_u) {
   sum_exj_GHG <- sum(as.data.frame(lapply(except_j_GHG, as.numeric)))
   
   
-  lhs_CO2 <- as.vector(T_i_CO2 / sum_exj_CO2)[[1]]
+  lhs_CO2 <- as.vector(except_j_CO2 / sum_exj_CO2)[[1]]
   
-  lhs_GHG <- as.vector(T_i_GHG / sum_exj_GHG)[[1]]
+  lhs_GHG <- as.vector(except_j_GHG / sum_exj_GHG)[[1]]
   
   
   #----------------- Right-Hand Side of MB_network_1st  -----------------#
-  
-  T_j_CO2 <- df[(df$Year == year) & 
-                (df$Country_i == country_j) & 
-                (df$Sector_s == sector_u), "T_CO2"]
-  
-  T_j_GHG <- df[(df$Year == year) & 
-                (df$Country_i == country_j) & 
-                (df$Sector_s == sector_u), "T_GHG"]
-  
   
   except_i_CO2 <- df[(df$Year == year) & 
                      (df$Country_i == country_j) & 
@@ -87,9 +70,9 @@ cal_MB <- function(df, year, country_i, country_j, sector_s, sector_u) {
   sum_exi_GHG <- sum(as.data.frame(lapply(except_i_GHG, as.numeric)))
   
   
-  rhs_CO2 <- as.vector(T_j_CO2 / sum_exi_CO2)[[1]]
+  rhs_CO2 <- as.vector(except_i_CO2 / sum_exi_CO2)[[1]]
   
-  rhs_GHG <- as.vector(T_j_GHG / sum_exi_GHG)[[1]]
+  rhs_GHG <- as.vector(except_i_GHG / sum_exi_GHG)[[1]]
   
   
   #----------------- Final Result of MB_network_1st  -----------------#
@@ -124,7 +107,7 @@ cal_MB <- function(df, year, country_i, country_j, sector_s, sector_u) {
 #   time_vec[index] <- Sys.time() - time
 #   index <- index + 1
 # }
-# print(mean(time_vec))  # --> 0.2 sec
+# print(mean(time_vec))  # --> 0.12 sec
   
   
 
@@ -249,4 +232,5 @@ time <- Sys.time()
 parLapply(cl, tasks, function(f) f())
 stopCluster(cl)
 print(Sys.time()-time)  
+
   
