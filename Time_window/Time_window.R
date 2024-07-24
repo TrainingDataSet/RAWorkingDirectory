@@ -1,4 +1,4 @@
-# [Last Modified: 2024-05-10]
+# [Last Modified: 2024-06-19]
 
 library(dplyr)
 library(readr)
@@ -19,7 +19,7 @@ cal_window <- function(df, variables, file_name) {
     group_by(Country_i, Country_j, Sector_s, Sector_u) %>%
     summarise(
       across(.cols = all_of(variables), 
-             .fns = ~log(mean(.x, na.rm = TRUE)), 
+             .fns = ~mean(.x, na.rm = TRUE), 
              .names = "{.col}"), .groups = "drop"
     )
   
@@ -27,7 +27,7 @@ cal_window <- function(df, variables, file_name) {
     group_by(Country_i, Country_j, Sector_s, Sector_u) %>%
     summarise(
       across(.cols = all_of(variables), 
-             .fns = ~log(mean(.x, na.rm = TRUE)), 
+             .fns = ~mean(.x, na.rm = TRUE), 
              .names = "{.col}"), .groups = "drop"
     )
 
@@ -35,7 +35,7 @@ cal_window <- function(df, variables, file_name) {
     group_by(Country_i, Country_j, Sector_s, Sector_u) %>%
     summarise(
       across(.cols = all_of(variables), 
-             .fns = ~log(mean(.x, na.rm = TRUE)), 
+             .fns = ~mean(.x, na.rm = TRUE), 
              .names = "{.col}"), .groups = "drop"
     )
 
@@ -43,7 +43,7 @@ cal_window <- function(df, variables, file_name) {
     group_by(Country_i, Country_j, Sector_s, Sector_u) %>%
     summarise(
       across(.cols = all_of(variables), 
-             .fns = ~log(mean(.x, na.rm = TRUE)), 
+             .fns = ~mean(.x, na.rm = TRUE), 
              .names = "{.col}"), .groups = "drop"
     )
   
@@ -65,9 +65,9 @@ cal_window <- function(df, variables, file_name) {
 }
 
 # Run
-df <- read_csv("LB_pollutants/LB_pollutants.csv")
-variables <- c("LB_CO2", "LB_GHG")
-file_name <- "Time_window/LB_pollutants_tw.csv"
+df <- read_csv("Network2nd_pollutants/Network2nd_pollutants.csv")
+variables <- c("MB_network2nd_CO2", "MB_network2nd_GHG")
+file_name <- "Time_window/MB_Network2nd_pollutants_tw.csv"
 
 cal_window(df, variables, file_name)
 

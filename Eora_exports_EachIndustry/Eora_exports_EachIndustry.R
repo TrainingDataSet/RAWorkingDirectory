@@ -35,8 +35,9 @@ cal_exports <- function(df, year, country, industry) {
 #---------------- Test Code ----------------#
 
 # df <- read_csv("Eora_exports/Eora_exports.csv")
-# country = "KOR"
-# industry = "c1"
+# year = 2021
+# country = "FRA"
+# industry = "c25"
 # test <- cal_exports(df, year, country, industry)
 # print(test)
 # 

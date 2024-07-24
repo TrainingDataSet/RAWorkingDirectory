@@ -63,7 +63,7 @@ cal_exports <- function(df, country_i, country_j, from_industry, to_sector) {
 
 #---------------- Test Code ----------------#
 
-df <- read_csv("Eora_csv_files/Eora1992.csv")
+df <- read_csv("Eora_csv_files/Eora1994.csv")
 test <- cal_exports(df, "KOR", "GHA", "c1", goods_lst)
 print(test)
 
