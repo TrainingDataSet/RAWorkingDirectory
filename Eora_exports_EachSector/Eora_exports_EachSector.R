@@ -10,7 +10,7 @@ setwd("~/RAWorkingDirectory")
 # Calculate exports in sector to sector
 #
 # Args:
-#   df: Eora_exports.csv
+#   df: Eora_exports/Eora_exports.csv
 #   sector_lst: A list containing the industries of each sector (goods/services)
 #   year: Year
 #   country_i: Code of country_i

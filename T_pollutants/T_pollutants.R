@@ -21,8 +21,8 @@ setwd("~/RAWorkingDirectory")
 # Calculate total trade flows considering pollutants weight
 #
 # Args:
-#   exports_df: Exports dataframe
-#   pollutants_df: Pollutants weight dataframe
+#   exports_df: Eora_exports/Eora_exports.csv
+#   pollutants_df: Pollutants_weight/Pollutants_weight.csv
 #   year: Year of variable
 #   country_i: Code of country_s
 #   country_j: Code of country_r
