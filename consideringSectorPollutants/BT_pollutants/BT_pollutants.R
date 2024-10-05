@@ -76,7 +76,7 @@ cal_BT <- function(t_df, vad_df, year, country_i, country_j, sector_s, sector_u)
 
 #---------------- Test Code ----------------#
 
-t_df <- read_csv("T_pollutants/T_pollutants.csv")
+t_df <- read_csv("T_sector/T_sector.csv")
 vad_df <- read_csv("VAD/Eora_VAD.csv")
 
 year <- 2018
