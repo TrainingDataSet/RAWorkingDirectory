@@ -23,7 +23,7 @@ setwd("~/RAWorkingDirectory")
 
 cal_LB <- function(df, year, country_i, country_j) {
   
-  #----------------- Left-Hand Side of MB_network_1st  -----------------#
+  #----------------- Left-Hand Side of LB_network_1st  -----------------#
   
   except_j <- df[(df$Year == year) & 
                  (df$Country_i == country_i) & 
@@ -37,7 +37,7 @@ cal_LB <- function(df, year, country_i, country_j) {
   lhs <- as.vector(except_j / sum_exj)[[1]]
   
   
-  #----------------- Right-Hand Side of MB_network_1st  -----------------#
+  #----------------- Right-Hand Side of LB_network_1st  -----------------#
   
   except_i <- df[(df$Year == year) & 
                  (df$Country_i == country_j) &
