@@ -25,13 +25,13 @@ merge_csv_files <- function(directory, key_columns) {
 
 
 # Run
-directory <- "consideringNothing/Time_window"
+directory <- "consideringSector/Time_window"
 # key_columns <- c("t", "Country_i", "Country_j", "Sector_s", "Sector_u")
 key_columns <- c("t", "Country_i", "Country_j")
 merged_df <- merge_csv_files(directory, key_columns)
 
 merged_df2 <- merged_df %>%
-  select(t, Country_i, Country_j, Corr_GDP, everything())
+  select(t, Country_i, Country_j, Sector_s, Sector_u, Corr_VAD, everything())
 
-file_name <- "consideringNothing/Dataset/dataset.csv"
+file_name <- "consideringSector/Dataset/dataset2.csv"
 write_csv(merged_df2, file_name)

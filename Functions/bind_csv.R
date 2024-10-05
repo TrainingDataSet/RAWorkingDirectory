@@ -1,4 +1,4 @@
-# [Last Modified: 2024-06-25]
+# [Last Modified: 2024-09-01]
 
 library(dplyr)
 library(readr)
@@ -18,7 +18,7 @@ bind_csv <- function(directory, file_name) {
 }
 
 # Run
-directory = "consideringNothing/BT"
-file_name = "consideringNothing/BT/BT.csv"
+directory = "consideringSector/Network2nd"
+file_name = "consideringSector/Network2nd/Network2nd.csv"
 bind_csv(directory, file_name)
 
