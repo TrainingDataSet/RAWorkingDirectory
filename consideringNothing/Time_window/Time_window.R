@@ -66,9 +66,9 @@ cal_window <- function(df, variables, file_name) {
 }
 
 # Run
-df <- read_csv("consideringNothing/Network2nd/Network2nd.csv")
-variables <- "MB_network2nd"
-file_name <- "consideringNothing/Time_window/MB_Network2nd_tw.csv"
+df <- read_csv("consideringNothing/MB/MB.csv")
+variables <- "MB"
+file_name <- "consideringNothing/Time_window/MB_tw.csv"
 
 cal_window(df, variables, file_name)
 
