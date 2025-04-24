@@ -25,13 +25,30 @@ merge_csv_files <- function(directory, key_columns) {
 
 
 # Run
-directory <- "consideringSector/Time_window"
-# key_columns <- c("t", "Country_i", "Country_j", "Sector_s", "Sector_u")
+directory <- "Dataset"
+# key_columns <- c("Country_s", "Country_r")
 key_columns <- c("t", "Country_i", "Country_j")
 merged_df <- merge_csv_files(directory, key_columns)
 
-merged_df2 <- merged_df %>%
-  select(t, Country_i, Country_j, Sector_s, Sector_u, Corr_VAD, everything())
+file_name <- "Dataset/data_eoracountry (2).csv"
+write_csv(merged_df, file_name)
 
-file_name <- "consideringSector/Dataset/dataset2.csv"
-write_csv(merged_df2, file_name)
+# merged_df2 <- merged_df %>%
+#   select(Country_s, Country_r, corr_rgdp, corr_rgdp_co2, corr_co2, 
+#          corr_rgdp_capita, corr_rgdp_co2_capita, corr_co2_capita, 
+#          Within_country_corr_CO2_i, Within_country_corr_CO2_j,
+#          Corr_prod_CO2, Corr_diff_CO2, total, inter, final, BT_demand, BT_supply,
+#          MB_network_1st, LB_network_1st, MB_network_2nd, LB_network_2nd, sector_prox)
+# 
+# merged_df3 <- merged_df2 %>%
+#   rename(country_s = Country_s, country_r = Country_r,
+#          log_bt_d_total = total, log_bt_d_inter = inter, log_bt_d_final = final,
+#          log_bt_demand = BT_demand, log_bt_supply = BT_supply,
+#          mb_network_1st = MB_network_1st, lb_network_1st = LB_network_1st,
+#          mb_network_2nd = MB_network_2nd, lb_network_2nd = LB_network_2nd)
+# 
+# merged_df4 <- merged_df3 %>%
+#   arrange(country_s, country_r)
+# 
+# file_name <- "ADB/Dataset/globaltrade_country_entirePeriod.csv"
+# write_csv(merged_df4, file_name)

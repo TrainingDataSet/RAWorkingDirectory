@@ -54,15 +54,15 @@ cal_corr_vad <- function(df, t, country_i, country_j, sector_s, sector_u) {
 
 # df <- read_csv("VAD/VAD_HP_filtered.csv")
 # 
-# country_i <- "RUS"
-# country_j <- "PRY"
-# sector_s <- "services"
+# country_i <- "KOR"
+# country_j <- "JPN"
+# sector_s <- "goods"
 # sector_u <- "goods"
 # t <- c(1990:1999)
 # 
 # print(cal_corr_vad(df, t, country_i, country_j, sector_s, sector_u))
-# 
-# # Running Time of Function
+
+# Running Time of Function
 # microbenchmark(
 #   test = cal_corr_vad(df, t, country_i, country_j, sector_s, sector_u),
 #   times = 1000
@@ -160,7 +160,7 @@ for (t in c("1", "2", "3", "4")) {
     arrange(t, Country_i, Country_j, Sector_s, Sector_u)
   
   # Save it as a csv file
-  write_csv(Corr_df4, paste0("consideringSectorPollutants/Time_window/Corr_VAD.csv"))
+  write_csv(Corr_df4, paste0("consideringSector/Time_window/Corr_VAD.csv"))
 }
 
 print(Sys.time()-time)  # --> running time 1.05 mins

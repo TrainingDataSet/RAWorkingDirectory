@@ -1,5 +1,6 @@
-# [Last Modified: 2024-08-02]
+# [Last Modified: 2025-04-08]
 # 2024-08-02: Apply HP filter to VAD
+# 2025-04-08: Use real VAD, not nominal VAD
 
 library(dplyr)
 library(readr)
@@ -9,10 +10,14 @@ library(microbenchmark)
 setwd("~/RAWorkingDirectory")
 
 hp_filtered <- function(df, country, sector) {
-  vad <- df[(df$Country == country) &
-            (df$Sector == sector), "VAD"]
+  vad <- df[(df$Country_i == country) &
+            (df$Industry_s %in% sector[[1]]), ]
   
-  vad_ts <- ts(vad, start = 1990, frequency = 1)
+  vad1 <- vad %>%
+    group_by(Year, Country_i) %>%
+    summarise(VA_con = sum(VA_con), .groups = "drop")
+  
+  vad_ts <- ts(vad1["VA_con"], start = 1990, frequency = 1)
   vad_hp <- hp1(vad_ts, lambda = 100)
   
   return (vad_hp)
@@ -21,22 +26,27 @@ hp_filtered <- function(df, country, sector) {
 
 #---------------- Test Code ----------------#
 
-# df <- read_csv("VAD/Eora_VAD.csv")
-# country <- "KOR"
-# sector <- "goods"
+# # Industry list (goods and services)
+# goods_lst <- list("goods" = paste0("c", 1:12))
+# services_lst <- list("services" = paste0("c", 13:25))
+# industry_lst <- list("goods" = goods_lst, "services" = services_lst)
+# 
+# df <- read_csv("Export_Import_Sales_VA2/Export_Import_Sales_VA_EntireCountry (2).csv")
+# country <- "DZA"
+# sector <- services_lst
 # 
 # print(hp_filtered(df, country, sector))
-# 
-# # Running Time of Function
+
+# Running Time of Function
 # microbenchmark(
 #   test = hp_filtered(df, country, sector),
 #   times = 100
-# ) # --> 0.003 sec
+# ) # --> 0.009 sec
 
 
 #------------------------- Run Entire -------------------------# 
 
-df <- read_csv("VAD/Eora_VAD.csv")
+df <- read_csv("Export_Import_Sales_VA2/Export_Import_Sales_VA_EntireCountry (2).csv")
 
 # Country list (Entire country)
 # country_lst <- c("AFG", "ALB", "DZA", "AND", "AGO", "ATG", "ARG", "ARM", "ABW", "AUS", "AUT", "AZE", "BHS", "BHR", "BGD", "BRB", "BLR", "BEL", "BLZ", "BEN", "BMU",
@@ -55,9 +65,11 @@ country_lst <- c("DZA", "AGO", "ARG", "AUS", "AUT", "AZE", "BHR", "BGD", "BLR", 
                  "SWE", "CHE", "THA", "TUN", "TUR", "UKR", "ARE", "GBR", "TZA", "USA", "URY", "UZB", "VEN", "VNM")
 
 # Sector list (goods and services)
-sector_lst <- c("goods", "services")
+goods_lst <- list("goods" = paste0("c", 1:12))
+services_lst <- list("services" = paste0("c", 13:25))
+sector_lst <- list("goods" = goods_lst, "services" = services_lst)
 
-lst_length <- numeric(length(country_lst) * length(sector_lst) * 33)
+lst_length <- numeric(length(country_lst) * length(industry_lst) * 33)
 
 VAD_lst <- list("Year" = lst_length,
                 "Country" = lst_length,
@@ -71,7 +83,7 @@ for (country in country_lst) {
     vad_filtered <- hp_filtered(df, country, sector)
     VAD_lst$Year[index:(index+32)] <- c(1990:2022)
     VAD_lst$Country[index:(index+32)] <- rep(country, 33) 
-    VAD_lst$Sector[index:(index+32)] <- rep(sector, 33)
+    VAD_lst$Sector[index:(index+32)] <- rep(names(sector), 33)
     VAD_lst$VAD[index:(index+32)] <- as.vector(vad_filtered)[[1]]
     
     index <- index + 33
