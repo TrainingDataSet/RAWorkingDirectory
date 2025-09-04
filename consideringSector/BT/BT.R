@@ -1,5 +1,6 @@
 # [Last Modified: 2024-08-31]
 # 2023-08-31: Calculate BT considering sector
+# 2025-05-27: Use real VAD, not nominal VAD
 
 library(dplyr)
 library(readr)
@@ -63,11 +64,11 @@ cal_BT <- function(t_df, vad_df, year, country_i, country_j, sector_s, sector_u)
 #---------------- Test Code ----------------#
 
 # t_df <- read_csv("T_sector/T_sector.csv")
-# vad_df <- read_csv("VAD/Eora_VAD.csv")
+# vad_df <- read_csv("VAD/real_VAD.csv")
 # 
-# year <- 2019
-# country_i <- "LUX"
-# country_j <- "GHA"
+# year <- 2022
+# country_i <- "VNM"
+# country_j <- "VEN"
 # sector_s <- "services"
 # sector_u <- "services"
 # 
@@ -84,7 +85,7 @@ cal_BT <- function(t_df, vad_df, year, country_i, country_j, sector_s, sector_u)
 #------------------------- Run Entire -------------------------# 
 
 t_df <- read_csv("T_sector/T_sector.csv")
-vad_df <- read_csv("VAD/Eora_VAD.csv")
+vad_df <- read_csv("VAD/real_VAD.csv")
 
 cl <- makeCluster(11)
 
@@ -171,7 +172,7 @@ task <- function(year_lst) {
       arrange(Year, Country_i, Country_j, Sector_s, Sector_u)
     
     # Save it as a csv file
-    write_csv(BT_EachYear4, paste0("consideringSector/BT/BT_", 
+    write_csv(BT_EachYear4, paste0("consideringSector/BT2/BT_", 
                                    year_lst[1], "-", year_lst[3], ".csv"))
   }
 }

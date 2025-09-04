@@ -18,7 +18,7 @@ bind_csv <- function(directory, file_name) {
 }
 
 # Run
-directory = "OECD/consideringNonOECD/Network2nd"
-file_name = "OECD/consideringNonOECD/Network2nd/Network2nd_nonoecd.csv"
+directory = "consideringSector/BT2/"
+file_name = "consideringSector/BT2/BT.csv"
 bind_csv(directory, file_name)
 

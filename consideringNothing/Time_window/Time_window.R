@@ -20,7 +20,7 @@ cal_window <- function(df, variables, file_name) {
     group_by(Country_i, Country_j) %>%
     summarise(
       across(.cols = all_of(variables), 
-             .fns = ~mean(.x, na.rm = TRUE), 
+             .fns = ~log(mean(.x, na.rm = TRUE)), 
              .names = "{.col}"), .groups = "drop"
     )
   
@@ -28,7 +28,7 @@ cal_window <- function(df, variables, file_name) {
     group_by(Country_i, Country_j) %>%
     summarise(
       across(.cols = all_of(variables), 
-             .fns = ~mean(.x, na.rm = TRUE), 
+             .fns = ~log(mean(.x, na.rm = TRUE)), 
              .names = "{.col}"), .groups = "drop"
     )
   
@@ -36,7 +36,7 @@ cal_window <- function(df, variables, file_name) {
     group_by(Country_i, Country_j) %>%
     summarise(
       across(.cols = all_of(variables), 
-             .fns = ~mean(.x, na.rm = TRUE), 
+             .fns = ~log(mean(.x, na.rm = TRUE)), 
              .names = "{.col}"), .groups = "drop"
     )
   
@@ -44,7 +44,7 @@ cal_window <- function(df, variables, file_name) {
     group_by(Country_i, Country_j) %>%
     summarise(
       across(.cols = all_of(variables), 
-             .fns = ~mean(.x, na.rm = TRUE), 
+             .fns = ~log(mean(.x, na.rm = TRUE)),  
              .names = "{.col}"), .groups = "drop"
     )
   
@@ -66,9 +66,9 @@ cal_window <- function(df, variables, file_name) {
 }
 
 # Run
-df <- read_csv("consideringNothing/MB/MB.csv")
-variables <- "MB"
-file_name <- "consideringNothing/Time_window/MB_tw.csv"
+df <- read_csv("consideringNothing/BT_total/BT_total.csv")
+variables <- "BT_total"
+file_name <- "consideringNothing/Time_window/BT_total_tw.csv"
 
 cal_window(df, variables, file_name)
 

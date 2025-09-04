@@ -79,10 +79,10 @@ cal_window <- function(df, variables, file_name) {
 }
 
 # Run
-df <- read_csv("IO_ratio/Country_level_IO_ratio.csv")
+df <- read_csv("VAD/real_VAD_growth.csv")
 
-variables <- c("Forward_to_trade", "Backward_to_trade")
-file_name <- "Linkages/Linkages_to_tradedSector/Linkages_to_tradedSector_mean_tw.csv"
+variables <- c("VAD_growth")
+file_name <- "VAD/real_VAD_growth_mean_tw.csv"
 
 cal_window(df, variables, file_name)
 

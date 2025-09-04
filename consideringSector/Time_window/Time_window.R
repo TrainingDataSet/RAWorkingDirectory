@@ -65,9 +65,9 @@ cal_window <- function(df, variables, file_name) {
 }
 
 # Run
-df <- read_csv("consideringSector/SectorProx/Eora_SectorProx2.csv")
-variables <- "Sector_prox2"
-file_name <- "consideringSector/Time_window/SectorProx_tw.csv"
+df <- read_csv("consideringSector/BT2/BT.csv")
+variables <- "BT"
+file_name <- "consideringSector/Time_window/BT2_tw.csv"
 
 cal_window(df, variables, file_name)
 
